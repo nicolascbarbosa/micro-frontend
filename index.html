@@ -1,14 +1,44 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-br">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Plain JavaScript, Multiple Teams, Client Render</title>
+    <title>Micro Frontend</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="./index.css" rel="stylesheet">
   </head>
   <body>
-    <main id="app"></main>
+    <header>
+        <h1>Eu sou um Header compartilhado</h1>
+    </header>
+    <main id="app">
+       <h2>Header + Footer = Nós somoos um container</h2>
+       <div id="content">
+          
+       </div> 
+    </main>
+    <footer>
+        <p>Eu sou um footer compartilhado</p>
+    </footer>
+    <script>
+
+      let divs = new Array(3);
+      const container = document.getElementById('content');
+      
+
+      document.addEventListener('update', (e) => {        
+        const { index, content } = e.detail;   
+        container.innerHTML = '';     
+        divs[index] = content;
+
+        divs.forEach((element) => {
+          container.appendChild(element)
+        });
+      })
+
+        
+    </script>
     <script src="./angular-app/index.js" async></script>
     <script src="./react-app/index.js" async></script>
     <script src="./vue-app/index.js" async></script>
